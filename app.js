@@ -7,7 +7,7 @@ async function searchNotion() {
         const response = await fetch('https://api.notion.com/v1/databases/728db219e8924a438acd6a299e56ef8d/query', {
             method: 'POST',
             headers: {
-                'Authorization': 'Bearer YOUR_INTEGRATION_TOKEN',
+                'Authorization': 'Bearer secret_e573ivQHSjCYqRPeMbhKzqKlJgOwuj6h6WG7C24iOLv',
                 'Content-Type': 'application/json',
                 'Notion-Version': '2022-06-28'
             },
