@@ -1,0 +1,39 @@
+async function searchNotion() {
+    const query = document.getElementById('searchInput').value;
+    const resultsDiv = document.getElementById('results');
+    resultsDiv.innerHTML = 'Searching...';
+
+    try {
+        const response = await fetch('https://api.notion.com/v1/databases/YOUR_DATABASE_ID/query', {
+            method: 'POST',
+            headers: {
+                'Authorization': 'Bearer YOUR_INTEGRATION_TOKEN',
+                'Content-Type': 'application/json',
+                'Notion-Version': '2022-06-28'
+            },
+            body: JSON.stringify({
+                "filter": {
+                    "property": "Name", // Replace with your column name
+                    "text": {
+                        "contains": query
+                    }
+                }
+            })
+        });
+
+        const data = await response.json();
+        resultsDiv.innerHTML = '';
+
+        if (data.results.length > 0) {
+            data.results.forEach(result => {
+                const name = result.properties.Name.title[0]?.plain_text || 'No Name';
+                resultsDiv.innerHTML += `<p>${name}</p>`;
+            });
+        } else {
+            resultsDiv.innerHTML = '<p>No results found</p>';
+        }
+    } catch (error) {
+        console.error('Error:', error);
+        resultsDiv.innerHTML = '<p>Error fetching data</p>';
+    }
+}
