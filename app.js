@@ -4,7 +4,7 @@ async function searchNotion() {
     resultsDiv.innerHTML = 'Searching...';
 
     try {
-        const response = await fetch('https://api.notion.com/v1/databases/YOUR_DATABASE_ID/query', {
+        const response = await fetch('https://api.notion.com/v1/databases/728db219e8924a438acd6a299e56ef8d/query', {
             method: 'POST',
             headers: {
                 'Authorization': 'Bearer YOUR_INTEGRATION_TOKEN',
