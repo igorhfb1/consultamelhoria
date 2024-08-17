@@ -13,7 +13,7 @@ async function searchNotion() {
             },
             body: JSON.stringify({
                 "filter": {
-                    "property": "Name", // Replace with your column name
+                    "property": "Nome", // Usando a propriedade correta
                     "text": {
                         "contains": query
                     }
@@ -26,8 +26,8 @@ async function searchNotion() {
 
         if (data.results.length > 0) {
             data.results.forEach(result => {
-                const name = result.properties.Name.title[0]?.plain_text || 'No Name';
-                resultsDiv.innerHTML += `<p>${name}</p>`;
+                const nome = result.properties.Nome.title[0]?.plain_text || 'No Name';
+                resultsDiv.innerHTML += `<p>${nome}</p>`;
             });
         } else {
             resultsDiv.innerHTML = '<p>No results found</p>';
